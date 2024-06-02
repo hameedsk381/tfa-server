@@ -5,6 +5,18 @@ const Volunteer = require('../models/Volunteer');
 // Create a new volunteer
 router.post('/', async (req, res) => {
   try {
+    const existingVolunteer = await Volunteer.findOne({
+      name: req.body.name,
+      place: req.body.place,
+      profession: req.body.profession,
+      gender: req.body.gender,
+      consent: req.body.consent
+    });
+
+    if (existingVolunteer) {
+      return res.status(409).json({ message: 'Volunteer with the same details already exists' });
+    }
+
     const volunteer = new Volunteer(req.body);
     await volunteer.save();
     res.status(201).json(volunteer);
@@ -12,7 +24,6 @@ router.post('/', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-
 // Read all volunteers
 router.get('/', async (req, res) => {
   try {
