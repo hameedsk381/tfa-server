@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI).then( () => {
 const formRoutes = require('./routes/form');
 const responseRoutes = require('./routes/responses');
 
-app.use('/api/forms', formRoutes);
-app.use('/api/responses', responseRoutes);
-app.use('/api/volunteer', volunteersRoute);
+app.use('forms', formRoutes);
+app.use('responses', responseRoutes);
+app.use('volunteer', volunteersRoute);
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
