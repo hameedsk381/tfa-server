@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const volunteersRoute = require('./routes/Volunteers');
+const suggestionsRoute = require('./routes/Suggestions');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -29,4 +30,5 @@ const responseRoutes = require('./routes/responses');
 app.use('/forms', formRoutes); // Corrected the path to include a leading slash
 app.use('/responses', responseRoutes); // Corrected the path to include a leading slash
 app.use('/volunteer', volunteersRoute); // Corrected the path to include a leading slash
+app.use('/suggestion', suggestionsRoute);
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
