@@ -21,6 +21,10 @@ const VolunteerSchema = new mongoose.Schema({
     type: Boolean,
     required: true
   },
+  contribution: {
+    type: String,
+    required: true
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Volunteer', VolunteerSchema);
