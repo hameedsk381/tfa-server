@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -9,8 +9,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
+app.get('/', (req, res) => {
+  res.send('Welcome to the Volunteer Management System API');
+});
 
-mongoose.connect('mongodb+srv://hameedsk381:Y16cs943@cluster0.lw568vp.mongodb.net/Form');
+mongoose.connect(process.env.MONGO_URI).then( () => {
+    console.log("MongoDB connected");
+  });
 const formRoutes = require('./routes/form');
 const responseRoutes = require('./routes/responses');
 
